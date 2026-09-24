@@ -12,6 +12,8 @@ class MainPage:
     mn_auth = (By.XPATH, ".//button[text()='Войти в аккаунт']")
     # Кнопка "Оформить заказ"
     mn_order_button = (By.XPATH, ".//button[text()='Оформить заказ']")
+    # Заголовок конструктора "Соберите бургер"
+    mn_constructor_header = (By.XPATH, ".//h1[@class='text text_type_main-large mb-5 mt-10' and text()='Соберите бургер']")
 
     # Разделы
     # Кнопка "Булки"

@@ -14,12 +14,11 @@ class TestStellarBurgersConstructorForm:
         driver.find_element(*MainPage.mn_sauces_button).click()
 
         active_sauces_xpath = f"{MainPage.mn_sauces_button[1]}[contains(@class, 'tab_tab_type_current')]"
-
-        # Ждем появления элемента с активным классом
-        active_tab = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, active_sauces_xpath))
-        )
-        assert active_tab.is_displayed()
+        
+        # Вся проверка и ожидание маркера успеха 
+        assert WebDriverWait(driver, 10).until(
+            lambda d: d.find_element(By.XPATH, active_sauces_xpath).is_displayed()
+        ), "Вкладка 'Соусы' не стала активной после клика"
 
     # Проверка перехода на "Начинки"
     def test_constructor_go_to_filling_scroll_to_filling(self, login):
@@ -31,11 +30,10 @@ class TestStellarBurgersConstructorForm:
 
         active_filling_xpath = f"{MainPage.mn_filling_button[1]}[contains(@class, 'tab_tab_type_current')]"
         
-        # Ждём активации вкладки "Начинки"
-        active_tab = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, active_filling_xpath))
-        )
-        assert active_tab.is_displayed()
+        # Вся проверка и ожидание маркера успеха
+        assert WebDriverWait(driver, 10).until(
+            lambda d: d.find_element(By.XPATH, active_filling_xpath).is_displayed()
+        ), "Вкладка 'Начинки' не стала активной после клика"
 
     # Проверка перехода на "Булки"
     def test_constructor_go_to_bun_scroll_to_bun(self, login):
@@ -49,8 +47,8 @@ class TestStellarBurgersConstructorForm:
         driver.find_element(*MainPage.mn_bun_button).click()
         active_bun_xpath = f"{MainPage.mn_bun_button[1]}[contains(@class, 'tab_tab_type_current')]"
         
-        # Ждём активации вкладки "Булки"
-        active_tab = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, active_bun_xpath))
-        )
-        assert active_tab.is_displayed()
+        # Ожидание активации и проверка маркера успеха
+        assert WebDriverWait(driver, 10).until(
+            lambda d: d.find_element(By.XPATH, active_bun_xpath).is_displayed()
+        ), "Вкладка 'Булки' не стала активной после клика"
+        
